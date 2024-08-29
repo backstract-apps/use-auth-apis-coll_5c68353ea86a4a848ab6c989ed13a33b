@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $*APP_NAME*$-depl
+  labels:
+    app: $*APP_NAME*$
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: $*APP_NAME*$
+  template:
+    metadata:
+      labels:
+        app: $*APP_NAME*$
+    spec:
+      containers:
+        - name: $*APP_NAME*$
+          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:298a588dc9ec57af8f2b916a101ebdc4a9da404d
+          imagePullPolicy: Always
+          ports:
+            - containerPort: $*PORT*$
