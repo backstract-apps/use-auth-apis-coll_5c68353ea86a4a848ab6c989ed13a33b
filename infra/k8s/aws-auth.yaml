@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   mapUsers: |
-    - userarn: $*USER_ARN*$
-      username: $*USER_NAME*$
+    - userarn: arn:aws:iam::216084506783:root
+      username: root
       groups:
         - system:masters
