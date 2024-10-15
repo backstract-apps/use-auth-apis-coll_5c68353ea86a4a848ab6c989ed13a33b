@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b
-          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:myapp,latest
+          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:myapp
           imagePullPolicy: Always
           ports:
             - containerPort: 8099
