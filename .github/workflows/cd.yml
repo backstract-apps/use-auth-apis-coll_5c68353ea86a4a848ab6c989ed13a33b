@@ -39,7 +39,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
-          docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
+          docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config to point to EKS
         run: aws eks update-kubeconfig --name backstract-dev --region ap-south-1
