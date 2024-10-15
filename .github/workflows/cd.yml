@@ -38,7 +38,7 @@ jobs:
           REPOSITORY: backstract_apps
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b -t $REGISTRY/$REPOSITORY:latest .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b .
           docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config to point to EKS
