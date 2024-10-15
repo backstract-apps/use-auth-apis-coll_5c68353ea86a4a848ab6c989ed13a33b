@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 # Copy and install dependencies
 COPY ./requirements.txt .
 RUN pip install --upgrade pip setuptools wheel \
-    && pip install -r requirements \
+    && pip install -r requirements.txt \
     && rm -rf /root/.cache/pip
 
 # Use a clean image for the final stage
