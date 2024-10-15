@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   mapUsers: |
-    - userarn: arn:aws:iam::216084506783:root
-      username: root
+    - userarn: arn:aws:iam::216084506783:user/kathy-ci-cd
+      username: kathy-ci-cd 
       groups:
         - system:masters
