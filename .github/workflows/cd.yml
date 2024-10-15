@@ -7,13 +7,19 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    name: Build Docker image and Push to AWS ECR
+  deploy:
+    name: Build Docker image and Push to AWS ECR and Deploy to EKS
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+
+      - name: Install Kube Control
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'v1.31.0'
+        id: install
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -32,5 +38,14 @@ jobs:
           REPOSITORY: backstract_apps
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
+          docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
+
+      - name: Update kube config to point to EKS
+        run: aws eks update-kubeconfig --name backstract-dev --region ap-south-1
+
+      - name: Deploy image to Amazon EKS
+        run: |
+          kubectl apply -f infra/k8s/aws-auth.yaml
+          kubectl apply -f infra/k8s/deployment.yaml
+          kubectl apply -f infra/k8s/service.yaml

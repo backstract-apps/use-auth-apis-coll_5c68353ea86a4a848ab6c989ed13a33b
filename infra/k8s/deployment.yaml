@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $*APP_NAME*$-depl
+  name: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b-depl
   labels:
-    app: $*APP_NAME*$
+    app: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: $*APP_NAME*$
+      app: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b
   template:
     metadata:
       labels:
-        app: $*APP_NAME*$
+        app: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b
     spec:
       containers:
-        - name: $*APP_NAME*$
-          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:298a588dc9ec57af8f2b916a101ebdc4a9da404d
+        - name: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b
+          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: $*PORT*$
+            - containerPort: 8099
+

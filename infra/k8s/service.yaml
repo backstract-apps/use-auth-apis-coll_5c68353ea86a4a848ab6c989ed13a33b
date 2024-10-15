@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: $*APP_NAME*$-srv
+  name: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b-srv
 spec:
   selector:
-    app: $*APP_NAME*$
+    app: use-auth-apis-coll-5c68353ea86a4a848ab6c989ed13a33b
   ports:
     - protocol: TCP
       port: 80
-      targetPort: $*PORT*$
+      targetPort: 8099
   type: LoadBalancer
